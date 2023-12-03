@@ -25,7 +25,7 @@ const setChronometer = () =>{
 
 
         if (milisecCounter === 99 ) {
-            secondsCounter++;
+            secondsCounter++;   
         }
         if (secondsCounter === 0) {
             seconds.innerText = '00:';
@@ -61,7 +61,7 @@ const pause = ()=>{
     return true
 }
 const start = () =>{
-    idChronometer = setInterval(setChronometer, 10);
+    idChronometer = setInterval(setChronometer, .5);
 }
 const reset = ()=>{
     minutes.innerText = '00:';
