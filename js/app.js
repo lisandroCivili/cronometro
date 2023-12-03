@@ -2,14 +2,17 @@ let milisecCounter = 0;
 let milisecCounterForMinutes = 0;
 let secondsCounter = 0;
 let minuteCounter = 0;
-const prueba = () =>{
-    const minutes = document.getElementById('minuteCount');
-    const seconds = document.getElementById('secCount');
-    const miliseconds = document.getElementById('milisecCount');
+let idChronometer;
+
+const minutes = document.getElementById('minuteCount');
+const seconds = document.getElementById('secCount');
+const miliseconds = document.getElementById('milisecCount');
+
+const setChronometer = () =>{
     minutes.innerText = "00:";
     seconds.innerText = "00:";
     miliseconds.innerText = "00";
-    setInterval(()=>{
+
         if (milisecCounter < 10) {
             miliseconds.innerText = `0${milisecCounter}`;
         }else{
@@ -49,7 +52,31 @@ const prueba = () =>{
             minuteCounter = 0;
         }
         milisecCounterForMinutes++
-        milisecCounter++},10)
+        milisecCounter++
         
 }
-prueba();        
+
+const pause = ()=>{
+    clearInterval(idChronometer);
+    return true
+}
+const start = () =>{
+    idChronometer = setInterval(setChronometer, 10);
+}
+const reset = ()=>{
+    minutes.innerText = '00:';
+    seconds.innerText = '00:';
+    miliseconds.innerText = '00';
+}
+const startBtn = document.getElementById('start');
+const pauseBtn = document.getElementById('pause');
+const resetBtn = document.getElementById('reset');
+
+startBtn.addEventListener('click', start);
+pauseBtn.addEventListener('click', pause);
+resetBtn.addEventListener('click', reset);
+if (pauseBtn !== true) {
+    minutes.innerText = '00:';
+    seconds.innerText = '00:';
+    miliseconds.innerText = '00';
+}
